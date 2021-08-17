@@ -1,0 +1,21 @@
+#!/bin/bash
+#export PYTHONPATH=~/PROJECTS/acq400_hapi/
+#export PYTHONPATH=/home/dt100/PROJECTS/acq400_hapi:/usr/local/mdsplus/pydevices
+
+if [ "x$1" = "x" ]; then
+  echo echo "USAGE: mdsplus-new-shot-upload-uuts UUT1 [UUT2 ..]"
+  exit 0
+else
+  UUTS="$*"
+fi
+
+new_shot --puti=TR:FREQ=40000000 $UUTS
+
+for u in $UUTS; do
+  ./bin/do_store $u tr &
+done
+
+
+for u in $UUTS; do
+  wait
+done

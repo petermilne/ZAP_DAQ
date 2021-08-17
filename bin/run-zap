@@ -1,0 +1,20 @@
+#!/bin/bash
+[ -z ${FL_MDS+x} ] && FL_MDS=--get_mdsplus=zap-mdsplus-new-shot-upload-uuts
+[ -z ${FL_POST+x} ] && FL_POST="--post=1M --demux=0"
+#[ -z ${FL_TRG+x} ] && FL_TRG=--trg0_src=WRTT0
+[ -z ${FL_TRG+x} ] && FL_TRG=--trg0_src=TXI
+[ -z ${FL_DLY+x} ] && FL_DLY=--WRTD_DELTA_NS=1000000000
+[ -z ${FL_OPT+x} ] && FL_OPT="--set_arm=1 --plot_data=0 --trace_upload=1"
+[ -z ${FL_TUNE+x} ] && FL_TUNE=--tune_si5326=2
+
+if [ ! -z ${FL_MDS} ]; then
+	FL_SHOT="--set_shot=$(get_shot --verbose=0 $UUTS)"
+else
+	FL_SHOT=""
+fi
+ARGS="--MR=0 $FL_TRG $FL_DLY $FL_TUNE $FL_SHOT $FL_POST $FL_MDS $FL_OPT -- $*"
+CMD="python3 PROJECTS/acq400_hapi/user_apps/special/acq2106_mr.py $ARGS"
+
+echo $CMD
+$CMD
+
