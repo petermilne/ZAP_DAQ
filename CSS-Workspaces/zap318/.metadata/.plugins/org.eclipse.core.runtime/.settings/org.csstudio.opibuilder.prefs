@@ -1,0 +1,3 @@
+eclipse.preferences.version=1
+font_default_pixels_or_points=points
+macros="UUT","acq2106_318"|"UUT1","acq2106_318"|"UUT2","acq2106_317"|"UUT3","acq2106_316"|"UUT4","acq2106_315"|"UUT5","acq2106_314"|"UUT6","acq2106_313"|"UUT7","acq2106_307"|"UUT8","acq2106_306"|"CAPOPI","capture"|"LAUNCHOPI","../ACQ400_LAUNCHER"
